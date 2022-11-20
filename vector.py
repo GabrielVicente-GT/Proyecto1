@@ -1,14 +1,21 @@
+#Import que viene default con python
+from math import *
 
+#Clase vector de la clase
 class V3(object):
-    def __init__(self,x,y,z = 0):
+    def __init__(self,x,y = 0,z = 0,w=1):
         self.x = x
         self.y = y
         self.z = z
+        self.w = w
 
+#Valores sin decimales
     def round(self):
         self.x = round(self.x)
         self.y = round(self.y)
         self.z = round(self.z)
+
+#Opearcion suma
     def __add__(self, other):
         return V3(
             self.x + other.x,
@@ -16,6 +23,7 @@ class V3(object):
             self.z + other.z
         )
 
+#Resta
     def __sub__(self, other):
         return V3(
             self.x - other.x,
@@ -23,6 +31,7 @@ class V3(object):
             self.z - other.z
         )
 
+#Multiplicacion
     def __mul__ (self, other):
         if (type(other) == int or type(other) == float):
             return V3(
@@ -36,21 +45,22 @@ class V3(object):
             self.x * other.y - self.y * other.x
         )
 
+#Multiplicacion@
     def __matmul__(self,other):
-        return self.x*other.x + self.y*other.y + self.z*other.z
+        return self.z*other.z + self.x*other.x + self.y*other.y
 
+#Largo
     def len(self):
-        return(self.x**2 + self.y**2 + self.z**2)**0.5
+        return(self.z**2 + self.y**2  +self.x**2)**(1/2)
 
+#Vector normal
     def normalize(self):
-        try: #Si el vector no es cero, entonces normaliza.
-            return self * (1 / self.len())
-        except: #Si el vector es cero, entonces devuelve un vector cero.
-            return V3(-1, -1, -1)
+        try:
+            return self*(1/self.len())
+        except:
+            return V3(-1,-1,-1)
 
-    def __repr__(self):
-        return "V3(%s,%s,%s)" & (self.x,self.y,self.z)
-
+#String
     def __str__(self):
         cadena = str(self.x)+" "+str(self.y)+" "+str(self.z)+" "
         return cadena

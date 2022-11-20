@@ -1,68 +1,37 @@
-#Gabriel Alejandro Vicente Lorenzo
-#SR1 UVG
+#Gabriel Alejandro Vicente Lorenzo 20498
+#Proyecto 1
 
 #Se importan los metodos solicitados por el ejercicios
 import gl
 import Creando
 from vector import *
+from extras import *
 
 gl.glInit()
-#Se crea la Ventana (Que renderiza a.bmp)
+#Se crea la Ventana 1024*1024
 gl.glCreateWindow(1024,1024)
 
-#Cambia el color con el que trabaja Clear
-gl.glClearColor(0,0,0)
+#Se cambia la vista de camara
+renderizado = gl.RenderizadoFuncio()
+renderizado.lookAt(V3(0,0,10), V3(0,0,0), V3(0,1,0))
 
-#Pinta TODOELMAPA de bits de un mismo color
-gl.glClear()
+#Se carga un fondo para la imagen
+Creando.fondo('./Fondos/FondoLago.bmp')
 
-# Creando.crear()
-Creando.crear_v3()
+#Se carga un shader que carga intensidad sin cambios
+renderizado.Shader = shaders
 
-#Trinagulos
+#Modelos con transformaciones, cambios de escala, rotaciones
+Creando.crear_robusto('./Objts/Gato.obj','./Textrs/Gato.bmp',translate = (0,0.25,0),scale = (0.007,0.007,0.007),rotate = (-pi/3,pi/20,-pi/4))
+Creando.crear_robusto('./Objts/Pato.obj','./Textrs/Pato.bmp',translate = (0.3,-0.8,-0.5),scale = (0.01,0.01,0.01),rotate = (-pi/3,0,pi/4))
+Creando.crear_robusto('./Objts/snake.obj','./Textrs/snake.bmp',translate = (-0.8,-0.5,0),scale = (0.011,0.011,0.011),rotate = (-pi/3,0,pi))
+Creando.crear_robusto('./Objts/Ave.obj','./Textrs/Ave.bmp',translate = (0.7,0.2,0),scale = (0.03,0.03,0.03),rotate = (-pi/3,0,pi/2))
 
-# gl.triangulo_version_dos(V3(10,70), V3(50,160), V3(70,80))
-# gl.triangulocreado(V3(180,50), V3(150,1), V3(70,180))
-# gl.triangulocreado(V3(150,150), V3(120,160), V3(130,180))
+#Se cambia de shader, intensidad variada con color rojo fijo
+renderizado.Shader = shader_rosado
 
-#Se crea el ViewPort (Ventana mas pequeña que se dibuja apartir de x y y)
-# gl.glViewPort(100, 100, 824, 824)
+#Modelo con transformaciones, cambios de escala, rotaciones
+Creando.crear_robusto('./Objts/Delfin.obj','./Textrs/Delfin.bmp',translate = (0,-0.4,0),scale = (0.002,0.002,0.002),rotate = (-pi/3,0,-pi/4))
 
-#Se pinta la linea
-# gl.glLine(-1,-1,0,1)
-
-#Casa
-# gl.glLine(0,0.025,0,0.05)
-# gl.glLine(0,0.025,0.57,0.08)
-# gl.glLine(0.57,0.08,0.57,0.1)
-# gl.glLine(0.57,0.1,0.33,0.4)
-# gl.glLine(0.33,0.4,-0.28,0.35)
-# gl.glLine(-0.28,0.35,-0.57,0.1)
-# gl.glLine(-0.57,0.1,0,0.05)
-# gl.glLine(-0.57,0.1,-0.57,0.075)
-# gl.glLine(-0.57,0.075,0,0.025)
-# gl.glLine(0,0.05,0.33,0.4)
-# gl.glLine(0,0.025,0,-0.33)
-# gl.glLine(0,-0.33,0.53,-0.22)
-# gl.glLine(-0.53,-0.16,0,-0.33)
-# gl.glLine(-0.53,-0.16,-0.53,0.070)
-# gl.glLine(0.53,-0.22,0.53,0.072)
-# gl.glLine(0.53,-0.22,0.53,0.072)
-
-# square = [
-#     (-0.6,-0.6),
-#     (0,-0.6),
-#     (0,0),
-#     (-0.6,0)
-# ]
-
-# last_point = square[-1]
-# for point in square:
-#     gl.glLine(*last_point,*point)
-#     last_point = point
-
-# print(o.lines)
-
-#Escribe el archivo .bmp
-gl.zbuffer()
-gl.glFinish()
+#Se escribe el proyecto
+gl.glFinish('Proyecto_1_20498.bmp')
