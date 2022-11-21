@@ -2,6 +2,46 @@ import struct
 from vector import *
 from textures import *
 
+#Shader arcoiris
+def shader_arcoiris(renderizado, **kwargs):
+    tA, tB, tC = kwargs['texture_coords']
+    nA, nB, nC = kwargs['normals']
+    A, B, C = kwargs['vertices']
+    w, u, v = kwargs['bar']
+    y = kwargs['aaa']
+    L = V3(1,1,1)
+
+    if renderizado.texture:
+        iA,iB, iC  = nA.normalize() @ L.normalize() , nB.normalize() @ L.normalize(), nC.normalize() @ L.normalize()
+
+        i = iA * w + iB * u + iC * v
+
+        tx = tA.x * w + tB.x * u + tC.x * v
+        ty = tA.y * w + tB.y * u + tC.y * v
+
+        r,g,b = renderizado.texture.GetColorIntensity(tx,ty,i)
+
+        if (y >=500 and y<=600):
+            return color(b,g,150)
+        elif (y >=600 and y<=650):
+            return color(b,150,r)
+        elif (y >=650 and y<=700):
+            return color(150,g,r)
+        elif (y >=700 and y<=750):
+            return color(b,g,150)
+        else:
+            return color(b,g,r)
+    else:
+        iA,iB, iC  = nA.normalize() @ L.normalize() , nB.normalize() @ L.normalize(), nC.normalize() @ L.normalize()
+
+        i = iA * w + iB * u + iC * v
+
+        azul    = abs(round(255*i))
+        rojo    = abs(round(i))
+        verde   = abs(round(i))
+
+        return color(max(min(rojo,255),0),max(min(verde,255),0) ,max(min(azul,255),0))
+
 #Shader que funciona con o sin textura con un valor de r definido
 def shader_rosado(renderizado, **kwargs):
     tA, tB, tC = kwargs['texture_coords']

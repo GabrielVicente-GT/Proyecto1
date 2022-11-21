@@ -21,8 +21,8 @@ class Render(object):
 
 #Matrix de vista
     def loadViewMatrix(self, x,y,z,center):
-        Mi = MatrizSimulada.matrix ([[x.x, x.y, x.z, 0],[y.x, y.y, y.z, 0],[z.x, z.y, z.z, 0],[0, 0, 0, 1]])
-        Op = MatrizSimulada.matrix ([[1,0,0,-center.x],[0,1,0,-center.y],[0,0,1,-center.z],[0,0,0,1]])
+        Mi = MatrizSimulada.matrix (([x.x, x.y, x.z, 0],[y.x, y.y, y.z, 0],[z.x, z.y, z.z, 0],[0, 0, 0, 1]))
+        Op = MatrizSimulada.matrix (([1,0,0,-center.x],[0,1,0,-center.y],[0,0,1,-center.z],[0,0,0,1]))
         self.View = Mi @ Op
 
 #Viendo
@@ -37,15 +37,14 @@ class Render(object):
 
 #Proyeccion
     def loadProjectionMatrix(self,eye, center):
-        coeficiente_nuevo=-1/(eye.len()-center.len())
-        self.Projection = MatrizSimulada.matrix([[1, 0, 0, 0],[0, 1, 0, 0],[0, 0, 1, 0],[0, 0, coeficiente_nuevo, 1]])
+        coeficiente_nuevo=-1/(eye.largo()-center.largo())
+        self.Projection = MatrizSimulada.matrix(([1, 0, 0, 0],[0, 1, 0, 0],[0, 0, 1, 0],[0, 0, coeficiente_nuevo, 1]))
 
 #Viewport
     def loadViewPortMatrix(self):
         x,y = 0,0
         w,h = self.width/2, self.heigth/2
-        self.ViewPort = MatrizSimulada.matrix([[w,0,0,x+w],[0,h,0,y+h],[0,0,128,128],[0,0,0,1]
-        ])
+        self.ViewPort = MatrizSimulada.matrix(([w,0,0,x+w],[0,h,0,y+h],[0,0,128,128],[0,0,0,1]))
 
 #Matris de modelo con transformaciones, escala y rotacion
     def loadModelMatrix(self, translate = (0,0,0), scale = (1,1,1), rotate = (0,0,0)):
@@ -53,15 +52,15 @@ class Render(object):
         scale = V3(*scale)
         rotate = V3(*rotate)
 
-        translation_matrix = MatrizSimulada.matrix ([[1,0,0,translate.x],[0,1,0,translate.y],[0,0,1,translate.z],[0,0,0,1]])
-        scale_matrix = MatrizSimulada.matrix ([[scale.x,0,0,0],[0,scale.y,0,0],[0,0,scale.z,0],[0,0,0,1]])
+        translation_matrix = MatrizSimulada.matrix (([1,0,0,translate.x],[0,1,0,translate.y],[0,0,1,translate.z],[0,0,0,1]))
+        scale_matrix = MatrizSimulada.matrix (([scale.x,0,0,0],[0,scale.y,0,0],[0,0,scale.z,0],[0,0,0,1]))
 
         a = rotate.x
-        rotation_x = MatrizSimulada.matrix ([[1,0,0,0],[0,cos(a),-sin(a),0],[0,sin(a),cos(a),0],[0,0,0,1]])
+        rotation_x = MatrizSimulada.matrix (([1,0,0,0],[0,cos(a),-sin(a),0],[0,sin(a),cos(a),0],[0,0,0,1]))
         a = rotate.y
-        rotation_y = MatrizSimulada.matrix ([[cos(a),0,sin(a),0],[0,1,0,0],[-sin(a),0,cos(a),0],[0,0,0,1]])
+        rotation_y = MatrizSimulada.matrix (([cos(a),0,sin(a),0],[0,1,0,0],[-sin(a),0,cos(a),0],[0,0,0,1]))
         a = rotate.z
-        rotation_z = MatrizSimulada.matrix ([[cos(a),-sin(a),0,0],[sin(a),cos(a),0,0],[0,0,1,0],[0,0,0,1]])
+        rotation_z = MatrizSimulada.matrix (([cos(a),-sin(a),0,0],[sin(a),cos(a),0,0],[0,0,1,0],[0,0,0,1]))
 
         rotation_matrix=rotation_x@rotation_y@rotation_z
         self.Model=translation_matrix@rotation_matrix@scale_matrix

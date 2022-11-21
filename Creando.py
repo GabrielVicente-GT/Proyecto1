@@ -9,7 +9,7 @@ import MatricesSimuladas as MatrizSimulada
 #Funcion transform optimizada con matrices
 def transform_vertex_robusto(vertex):
     renderizado = gl.RenderizadoFuncio()
-    augmented_vertex = MatrizSimulada.matrix([[vertex[0]],[vertex[1]],[vertex[2]],[1]])
+    augmented_vertex = MatrizSimulada.matrix(([vertex[0]],[vertex[1]],[vertex[2]],[1]))
     transformed_vertex = renderizado.ViewPort @ renderizado.Projection @renderizado.View @ renderizado.Model @ augmented_vertex
     divisor = transformed_vertex.obtener_valor_unico(3,0)
 

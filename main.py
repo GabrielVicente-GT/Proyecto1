@@ -25,6 +25,11 @@ renderizado.Shader = shaders
 Creando.crear_robusto('./Objts/Gato.obj','./Textrs/Gato.bmp',translate = (0,0.25,0),scale = (0.007,0.007,0.007),rotate = (-pi/3,pi/20,-pi/4))
 Creando.crear_robusto('./Objts/Pato.obj','./Textrs/Pato.bmp',translate = (0.3,-0.8,-0.5),scale = (0.01,0.01,0.01),rotate = (-pi/3,0,pi/4))
 Creando.crear_robusto('./Objts/snake.obj','./Textrs/snake.bmp',translate = (-0.8,-0.5,0),scale = (0.011,0.011,0.011),rotate = (-pi/3,0,pi))
+
+#Se cambia de shader, intensidad variada con color azul fijo
+renderizado.Shader = shader_arcoiris
+
+#Modelo con transformaciones, cambios de escala, rotaciones
 Creando.crear_robusto('./Objts/Ave.obj','./Textrs/Ave.bmp',translate = (0.7,0.2,0),scale = (0.03,0.03,0.03),rotate = (-pi/3,0,pi/2))
 
 #Se cambia de shader, intensidad variada con color rojo fijo

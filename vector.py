@@ -50,13 +50,13 @@ class V3(object):
         return self.z*other.z + self.x*other.x + self.y*other.y
 
 #Largo
-    def len(self):
+    def largo(self):
         return(self.z**2 + self.y**2  +self.x**2)**(1/2)
 
 #Vector normal
     def normalize(self):
         try:
-            return self*(1/self.len())
+            return self*(1/self.largo())
         except:
             return V3(-1,-1,-1)
 

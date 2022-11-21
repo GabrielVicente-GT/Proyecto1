@@ -3,7 +3,6 @@
 #Importa el archivo proporcionado en clase
 import  Render
 from vector import *
-import random
 import extras as ex
 from textures import *
 from Object import *
@@ -265,7 +264,6 @@ def triangulo_version_dos_textura(verices,vertices_de_textura = (),vertices_de_n
             z = C.z*u + B.z * v + A.z * w  +0
 
             if x<len(renderizado.zbuffer) and y<len(renderizado.zbuffer[0]) and renderizado.zbuffer[x][y] < z and x > 0 and y > 0:
-
                 renderizado.zbuffer[x][y] = z
-                renderizado.set_color(renderizado.Shader(renderizado, vertices = (A,B,C), bar = (w,u,v),texture_coords=(tA,tB,tC),normals=(nA,nB,nC)))
+                renderizado.set_color(renderizado.Shader(renderizado,aaa = y, vertices = (A,B,C), bar = (w,u,v),texture_coords=(tA,tB,tC),normals=(nA,nB,nC)))
                 renderizado.point(x,y)
