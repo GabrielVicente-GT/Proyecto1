@@ -1,14 +1,14 @@
 #imports necesarios para poder cargar modelo, textura, vectores y realizar operaciones con matrices
 
 from Object import *
-import gl
+import fiRender
 from vector import *
 from textures import *
 import MatricesSimuladas as MatrizSimulada
 
 #Funcion transform optimizada con matrices
 def transform_vertex_robusto(vertex):
-    renderizado = gl.RenderizadoFuncio()
+    renderizado = fiRender.RenderizadoFuncio()
     augmented_vertex = MatrizSimulada.matrix(([vertex[0]],[vertex[1]],[vertex[2]],[1]))
     transformed_vertex = renderizado.ViewPort @ renderizado.Projection @renderizado.View @ renderizado.Model @ augmented_vertex
     divisor = transformed_vertex.obtener_valor_unico(3,0)
@@ -21,7 +21,7 @@ def transform_vertex_robusto(vertex):
 
 #Funcion de creacion que utiliza textura objeto traslacion rotacion
 def crear_robusto(Objeto, Textura,translate, scale, rotate):
-    renderizado = gl.RenderizadoFuncio()
+    renderizado = fiRender.RenderizadoFuncio()
     renderizado.loadModelMatrix(translate,scale,rotate)
     cube = Obj(Objeto)
     if Textura == None:
@@ -62,8 +62,8 @@ def crear_robusto(Objeto, Textura,translate, scale, rotate):
             vn3 = V3(*cube.tvertices[fn3])
             vn4 = V3(*cube.tvertices[fn4])
 
-            gl.triangulo_version_dos_textura((v1,v2,v3),(vt1,vt2,vt3),(vn1,vn2,vn3))
-            gl.triangulo_version_dos_textura((v1,v3,v4),(vt1,vt3,vt4),(vn1,vn3,vn4))
+            fiRender.triangulo_version_dos_textura((v1,v2,v3),(vt1,vt2,vt3),(vn1,vn2,vn3))
+            fiRender.triangulo_version_dos_textura((v1,v3,v4),(vt1,vt3,vt4),(vn1,vn3,vn4))
 
 
         elif len(face) == 3:
@@ -83,10 +83,10 @@ def crear_robusto(Objeto, Textura,translate, scale, rotate):
             vn2 = V3(*cube.tvertices[fn2])
             vn3 = V3(*cube.tvertices[fn3])
 
-            gl.triangulo_version_dos_textura((v1,v2,v3),(vt1,vt2,vt3),(vn1,vn2,vn3))
+            fiRender.triangulo_version_dos_textura((v1,v2,v3),(vt1,vt2,vt3),(vn1,vn2,vn3))
 
 #Permite obtener los color de los pixeles de una imagen
 def fondo(Imagen):
-    renderizado = gl.RenderizadoFuncio()
+    renderizado = fiRender.RenderizadoFuncio()
     renderizado.Fondo = Texture(Imagen)
     renderizado.framebuffer = renderizado.Fondo.pixels

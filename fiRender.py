@@ -1,4 +1,6 @@
-#Archivo gl solicitado por SR1
+#Archivo solicitado por SR1, se queda con el fin de
+#Tener mas ordenado el proyecto
+#Contiene funciones que originalmente estaban en render
 
 #Importa el archivo proporcionado en clase
 import  Render

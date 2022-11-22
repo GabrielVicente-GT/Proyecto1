@@ -2,17 +2,17 @@
 #Proyecto 1
 
 #Se importan los metodos solicitados por el ejercicios
-import gl
+import fiRender
 import Creando
 from vector import *
 from extras import *
 
-gl.glInit()
+fiRender.glInit()
 #Se crea la Ventana 1024*1024
-gl.glCreateWindow(1024,1024)
+fiRender.glCreateWindow(1024,1024)
 
 #Se cambia la vista de camara
-renderizado = gl.RenderizadoFuncio()
+renderizado = fiRender.RenderizadoFuncio()
 renderizado.lookAt(V3(0,0,10), V3(0,0,0), V3(0,1,0))
 
 #Se carga un fondo para la imagen
@@ -39,4 +39,4 @@ renderizado.Shader = shader_rosado
 Creando.crear_robusto('./Objts/Delfin.obj','./Textrs/Delfin.bmp',translate = (0,-0.4,0),scale = (0.002,0.002,0.002),rotate = (-pi/3,0,-pi/4))
 
 #Se escribe el proyecto
-gl.glFinish('Proyecto_1_20498.bmp')
+fiRender.glFinish('Proyecto_1_20498.bmp')

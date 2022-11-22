@@ -1,10 +1,10 @@
 #Render proporcionado en clase para trabajar eficientemente
-import struct
-from extras import *
+import extras as ex
 import MatricesSimuladas as MatrizSimulada
+from vector import *
 
 #Colores predefinidos
-BLACK = color(0, 0, 0)
+BLACK = ex.color(0, 0, 0)
 
 class Render(object):
 
@@ -82,26 +82,26 @@ class Render(object):
 
         #pixel header
 
-        f.write( char('B'))
-        f.write( char('M'))
-        f.write( dword(14 + 40 + self.width * self.heigth * 3))
-        f.write( word(0))
-        f.write( word(0))
-        f.write( dword(14+40))
+        f.write( ex.char('B'))
+        f.write( ex.char('M'))
+        f.write( ex.dword(14 + 40 + self.width * self.heigth * 3))
+        f.write( ex.word(0))
+        f.write( ex.word(0))
+        f.write( ex.dword(14+40))
 
         #info header
 
-        f.write( dword(40))
-        f.write( dword(self.width))
-        f.write( dword(self.heigth))
-        f.write( word(1))
-        f.write( word(24))
-        f.write( dword(0))
-        f.write( dword(self.width*self.heigth*3))
-        f.write( dword(0))
-        f.write( dword(0))
-        f.write( dword(0))
-        f.write( dword(0))
+        f.write( ex.dword(40))
+        f.write( ex.dword(self.width))
+        f.write( ex.dword(self.heigth))
+        f.write( ex.word(1))
+        f.write( ex.word(24))
+        f.write( ex.dword(0))
+        f.write( ex.dword(self.width*self.heigth*3))
+        f.write( ex.dword(0))
+        f.write( ex.dword(0))
+        f.write( ex.dword(0))
+        f.write( ex.dword(0))
 
         # pixel data
 
